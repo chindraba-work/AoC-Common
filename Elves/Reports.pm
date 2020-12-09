@@ -19,18 +19,14 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.20.05';
-
-my $break_line = "------------------------------------------------\n";
+our $VERSION = '0.20.09';
 
 sub report_number {
-    printf "\n%s\nAdvent of Code %u, Day %u Part %u : the answer is %u\n\n%s",
-        $break_line,
+    printf "Advent of Code %u, Day %u Part %u : the answer is %u\n",
         $main::aoc_year,
         $main::challenge_day,
         $_[0],
-        $_[1],
-        $break_line;
+        $_[1];
 }
 
 
