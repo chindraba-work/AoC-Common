@@ -11,6 +11,7 @@ our @ISA = qw(Exporter);
 
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	report_number
+	report_string
 ) ] );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
@@ -29,6 +30,13 @@ sub report_number {
         $_[1];
 }
 
+sub report_string {
+    printf "Advent of Code %u, Day %u Part %u : the answer is «%s»\n",
+        $main::aoc_year,
+        $main::challenge_day,
+        $_[0],
+        $_[1];
+}
 
 1;
 __END__
