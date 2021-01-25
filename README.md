@@ -8,7 +8,7 @@ Unlike other repos I produce, this will not use [Semantic Versioning](https://se
 
 The "version" numbers in the files indicate the "day" for which the code was built, or last modified, and the year of the challenge, the versions to be 0.20.01, for Day 1 of 2020 challenge. Since the Advent of Code challenges only go back to 2015 and I will likely not live to work on a challenge in 2100, that should cover any years which I work on. Of course being "Advent" the day will always be from 1 to 25 inclusive.
 
-# Copyright and License
+## Copyright and License
 
 The MIT license applies to all the code within this repository.
 
@@ -18,7 +18,7 @@ Copyright © 2019, 2020  Chindraba (Ronald Lamoreaux)
                   <aoc@chindraba.work>
 - All Rights Reserved
 
-# The MIT License
+### The MIT License
 
 ```
 Permission is hereby granted, free of charge, to any person
