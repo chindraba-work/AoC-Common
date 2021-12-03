@@ -23,7 +23,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.20.06';
+our $VERSION = '0.21.03';
 
 # Presumption is that none of the data files will be extremely large,
 # and should be easily handled by system memory.
@@ -68,8 +68,9 @@ sub read_lined_list {
 # Read a file with lines for records and blank lines between groups.
 #   First arg (required) is path of file to read
 #   Second arg (optional) is the character between entries, default space and comma
+#       The string 'NULL' is used to force a split from string to char array
 # Return: list of lists of records
-    my $entry_delim = $_[1]? qr/$_[1]/ : qr/ |,/;
+    my $entry_delim = ('NULL' eq $_[1])? qr// : $_[1]? qr/$_[1]/ : qr/ |,/;
     my @data_list = map { [ map {split / /, $_} (split $entry_delim, $_) ] } (split /  /, slurp_data(shift));
     return @data_list;
 }
