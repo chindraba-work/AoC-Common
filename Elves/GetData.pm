@@ -15,6 +15,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
     read_comma_list
     read_lined_list
     read_lined_hash
+    read_lined_table
 ) ] );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
