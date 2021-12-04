@@ -10,20 +10,20 @@ require Exporter;
 our @ISA = qw(Exporter);
 
 our %EXPORT_TAGS = ( 'all' => [ qw(
-	slurp_data
-	read_lines
-	read_comma_list
-	read_lined_list
-	read_lined_hash
+    slurp_data
+    read_lines
+    read_comma_list
+    read_lined_list
+    read_lined_hash
 ) ] );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw(
-	
+
 );
 
-our $VERSION = '0.21.03';
+our $VERSION = '0.21.04';
 
 # Presumption is that none of the data files will be extremely large,
 # and should be easily handled by system memory.
@@ -88,6 +88,19 @@ sub read_lined_hash {
     my @data_list = map { {
         map { split $tuple_delim, $_ } (split $entry_delim, $_)
     } } (split /  /, slurp_data(shift));
+    return @data_list;
+}
+
+sub read_lined_table {
+# Read a file with lines for rows of a table and blank lines between tables.
+# It is presumed that the table is space/tab aligned into columns and commas
+# are ignored. Multiple whitespace is collapsed and only non-whitespace chars
+# are included in the returned data.
+#   First arg (required) is path of file to read
+# Return: list of list of tables as list of rows
+    my @data_list = slurp_data(shift);
+    map { s/^\s+//;s/\s+$//;s/\s+/µ/g;$_ } @data_list;
+    @data_list = map { [ map { [split /µ/, $_ ] } (split / /, $_) ] }(split /  /, "@data_list");
     return @data_list;
 }
 1;
