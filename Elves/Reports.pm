@@ -20,7 +20,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.20.09';
+our $VERSION = '0.21.15';
 
 sub report_number {
     $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
@@ -69,7 +69,7 @@ Chindraba, E<lt>aoc@chindraba.workE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2020  Chindraba (Ronald Lamoreaux)
+Copyright © 2020, 2021  Chindraba (Ronald Lamoreaux)
                   <aoc@chindraba.work>
 - All Rights Reserved
 
