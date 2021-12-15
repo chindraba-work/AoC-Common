@@ -23,19 +23,23 @@ our @EXPORT = qw(
 our $VERSION = '0.20.09';
 
 sub report_number {
-    printf "Advent of Code %u, Day %u Part %u : the answer is %u\n",
+    $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
+    printf "Advent of Code %u, Day %u Part %u : the answer is %u (Taking %f sec.)\n",
         $main::aoc_year,
         $main::challenge_day,
         $_[0],
-        $_[1];
+        $_[1],
+        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]);
 }
 
 sub report_string {
-    printf "Advent of Code %u, Day %u Part %u : the answer is «%s»\n",
+    $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
+    printf "Advent of Code %u, Day %u Part %u : the answer is «%s» (Taking %f sec.)\n",
         $main::aoc_year,
         $main::challenge_day,
         $_[0],
-        $_[1];
+        $_[1],
+        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]);
 }
 
 1;
