@@ -13,6 +13,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
     slurp_data
     read_lines
     read_comma_list
+    read_grid
     read_lined_list
     read_lined_hash
     read_lined_table
@@ -24,7 +25,7 @@ our @EXPORT = qw(
 
 );
 
-our $VERSION = '0.21.04';
+our $VERSION = '0.21.15';
 
 # Presumption is that none of the data files will be extremely large,
 # and should be easily handled by system memory.
@@ -63,6 +64,17 @@ sub read_comma_list {
     my $delimiter = shift || ',';
     my @data_list = split $delimiter, $puzzle_data;
     return @data_list;
+}
+
+sub read_grid {
+# Read a multi-line file as a grid of characters.
+#   First are (required_ is path of file to read
+#   Second arg (options) is the character between cells, none by default
+# Return: List of list of table cells
+    return unless wantarray;
+    my $cell_sep = $_[1]? qr/$_[1]/ : qr//;
+    my @data_grid = map { [split $cell_sep, $_] }(split / /, slurp_data(shift));
+    return wantarray? @data_grid : \@data_grid;
 }
 
 sub read_lined_list {
@@ -131,7 +143,7 @@ Chindraba, E<lt>aoc@chindraba.workE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019, 2020  Chindraba (Ronald Lamoreaux)
+Copyright © 2019 - 2021  Chindraba (Ronald Lamoreaux)
                   <aoc@chindraba.work>
 - All Rights Reserved
 
