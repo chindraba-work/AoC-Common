@@ -24,31 +24,31 @@ our @EXPORT = qw(
 our $VERSION = '0.21.15';
 
 sub report_loaded {
-    printf "Advent of Code %u, Day %u initialization complete (Taking %f sec.)\n",
+    printf "Advent of Code %u, Day %u initialization complete (Taking %f ms.)\n",
         $main::aoc_year,
         $main::challenge_day,
-        Time::HiRes::tv_interval($main::start_time[0]);
+        Time::HiRes::tv_interval($main::start_time[0]) * 1_000;
     $main::start_time[0] = [Time::HiRes::gettimeofday()];
 }
 
 sub report_number {
     $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
-    printf "Advent of Code %u, Day %u Part %u : the answer is %u (Taking %f sec.)\n",
+    printf "Advent of Code %u, Day %u Part %u : the answer is %u (Taking %f ms.)\n",
         $main::aoc_year,
         $main::challenge_day,
         $_[0],
         $_[1],
-        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]);
+        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]) * 1_000;
 }
 
 sub report_string {
     $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
-    printf "Advent of Code %u, Day %u Part %u : the answer is «%s» (Taking %f sec.)\n",
+    printf "Advent of Code %u, Day %u Part %u : the answer is «%s» (Taking %f ms.)\n",
         $main::aoc_year,
         $main::challenge_day,
         $_[0],
         $_[1],
-        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]);
+        Time::HiRes::tv_interval($main::start_time[$_[0] - 1]) * 1_000;
 }
 
 1;
