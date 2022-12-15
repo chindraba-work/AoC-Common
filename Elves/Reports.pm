@@ -10,6 +10,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 
 our %EXPORT_TAGS = ( 'all' => [ qw(
+	report_loaded
 	report_number
 	report_string
 ) ] );
@@ -21,6 +22,14 @@ our @EXPORT = qw(
 );
 
 our $VERSION = '0.21.15';
+
+sub report_loaded {
+    printf "Advent of Code %u, Day %u initialization complete (Taking %f sec.)\n",
+        $main::aoc_year,
+        $main::challenge_day,
+        Time::HiRes::tv_interval($main::start_time[0]);
+    $main::start_time[0] = [Time::HiRes::gettimeofday()];
+}
 
 sub report_number {
     $main::start_time[$_[0]] = [Time::HiRes::gettimeofday()];
